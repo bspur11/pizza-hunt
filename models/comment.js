@@ -9,19 +9,13 @@ const ReplySchema = new Schema(
       default: () => new Types.ObjectId()
     },
     replyBody: {
-<<<<<<< HEAD
       type: String,
-      required: "Please add your comment."
+      required: true,
+      trim: true
     },
     writtenBy: {
       type: String,
-      required: 'You must leave your name.'
-=======
-      type: String
-    },
-    writtenBy: {
-      type: String
->>>>>>> 77b5a8850a3426a8aa9b53955ea2093fd0dab9b9
+      required: true,
     },
     createdAt: {
       type: Date,
@@ -39,19 +33,12 @@ const ReplySchema = new Schema(
 const CommentSchema = new Schema(
   {
     writtenBy: {
-<<<<<<< HEAD
       type: String,
       required: 'Please leave your name.'
     },
     commentBody: {
       type: String,
       required: 'Please leave a comment.'
-=======
-      type: String
-    },
-    commentBody: {
-      type: String
->>>>>>> 77b5a8850a3426a8aa9b53955ea2093fd0dab9b9
     },
     createdAt: {
       type: Date,

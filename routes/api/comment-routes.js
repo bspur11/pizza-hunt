@@ -6,11 +6,8 @@ const {
   removeReply
 } = require('../../controllers/comment-controller');
 
-<<<<<<< HEAD
-=======
 // Set up a route called /api/comments/:pizzaId and use the addComment() method as a POST callback. Then set up another route for /api/comments/:pizzaId/:commentId and use the removeComment method as a DELETE callback.
 
->>>>>>> 77b5a8850a3426a8aa9b53955ea2093fd0dab9b9
 // /api/comments/<pizzaId>
 router.route('/:pizzaId').post(addComment);
 
