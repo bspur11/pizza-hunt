@@ -7,13 +7,20 @@ const {
 
 // 18.1.5
 // Install Mongoose and Create the Pizza Model
+// 18.5.3 validation required and trim
+
+//  required field option in Mongoose is set to true, it will require data to exist for that field. Also notice the trim option that's been added, which works just like the JavaScript .trim() method and removes white space before and after the input string
 
 const PizzaSchema = new Schema({
   pizzaName: {
-    type: String
+    type: String,
+    required: 'You need to name your pizza!!!',
+    trim: true
   },
   createdBy: {
-    type: String
+    type: String,
+    required: 'Please tell us who you are.',
+    trim: true
   },
 
 // If we navigate to the utils directory, we'll find a file called dateFormat.js that exports a function. This function will format the timestamp for us and return us one ready to display. Since it's already here, we should use that!
@@ -25,6 +32,8 @@ const PizzaSchema = new Schema({
   },
   size: {
     type: String,
+    required: true,
+    enum: ['Personal', 'Small', 'Medium', 'Large', 'Extra Large'],
     default: 'Large'
   },
 
