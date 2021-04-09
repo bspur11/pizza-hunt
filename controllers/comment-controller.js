@@ -22,7 +22,7 @@ const commentController = {
       .catch(err => res.json(err));
   },
 
-  // add reply to comment
+  // add reply to comment This is important
   addReply({ params, body }, res) {
     Comment.findOneAndUpdate({ _id: params.commentId }, { $push: { replies: body } }, { new: true })
       .then(dbPizzaData => {
