@@ -1,5 +1,7 @@
+const { Schema, model } = require('mongoose');
 const dateFormat = require('../utils/dateFormat');
 
+<<<<<<< HEAD
 const {
   Schema,
   model
@@ -54,17 +56,54 @@ const PizzaSchema = new Schema({
   toJSON: {
     virtuals: true,
     getters: true
+=======
+const PizzaSchema = new Schema(
+  {
+    pizzaName: {
+      type: String
+    },
+    createdBy: {
+      type: String
+    },
+
+// If we navigate to the utils directory, we'll find a file called dateFormat.js that exports a function. This function will format the timestamp for us and return us one ready to display. Since it's already here, we should use that!
+
+    createdAt: {
+      type: Date,
+      default: Date.now,
+      get: createdAtVal => dateFormat(createdAtVal)
+    },
+    size: {
+      type: String,
+      default: 'Large'
+    },
+    toppings: [],
+    comments: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Comment'
+      }
+    ]
+>>>>>>> 77b5a8850a3426a8aa9b53955ea2093fd0dab9b9
   },
-  id: false
-});
+  {
+    toJSON: {
+      virtuals: true,
+      getters: true
+    },
+    // prevents virtuals from creating duplicate of _id as `id`
+    id: false
+  }
+);
 
 // get total count of comments and replies on retrieval
-PizzaSchema.virtual('commentCount').get(function () {
-  return this.comments.length;
+PizzaSchema.virtual('commentCount').get(function() {
+  return this.comments.reduce(
+    (total, comment) => total + comment.replies.length + 1,
+    0
+  );
 });
 
-// create the Pizza model using the PizzaSchema 18.1.5
 const Pizza = model('Pizza', PizzaSchema);
 
-// export the Pizza model
 module.exports = Pizza;
